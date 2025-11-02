@@ -1,0 +1,293 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    overflow-x: hidden; /* Evita el scroll horizontal al ocultar el menú */
+}
+
+header {
+    background: linear-gradient(to right, #4CAF50, #8BC34A); /* Degradado de verde bajo a verde limón */
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1000;
+}
+
+/* Título Animado */
+.animated-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    animation: slideInLeft 1s ease-out forwards;
+    opacity: 0; /* Empieza oculto */
+    margin: 0;
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Estilos del icono de la hamburguesa */
+.menu-toggle {
+    display: none; /* Oculta el checkbox */
+}
+
+.menu-icon {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    transition: transform 0.3s ease;
+}
+
+.menu-icon .bar {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+/* Animación del icono al abrir el menú */
+#menu-toggle:checked + .menu-icon .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+#menu-toggle:checked + .menu-icon .bar:nth-child(2) {
+    opacity: 0;
+}
+
+#menu-toggle:checked + .menu-icon .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Estilos del menú */
+.menu {
+    position: fixed;
+    top: 0;
+    right: -250px; /* Inicialmente fuera de la pantalla */
+    width: 250px;
+    height: 100%;
+    background: linear-gradient(to bottom, #4CAF50, #8BC34A); /* Degradado vertical */
+    padding-top: 60px; /* Espacio para el header */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: right 0.5s ease-out; /* Animación de entrada */
+    z-index: 999;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    transform: translateX(100%); /* Empieza fuera de pantalla individualmente */
+    opacity: 0; /* Empieza oculto */
+}
+
+.menu ul li a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    transform: translateX(0); /* Vuelve a su posición al hacer hover */
+}
+
+/* Animación de entrada de los ítems del menú */
+#menu-toggle:checked ~ .menu {
+    right: 0; /* Desliza el menú hacia adentro */
+}
+
+#menu-toggle:checked ~ .menu ul li a {
+    transform: translateX(0); /* Desliza los ítems del menú hacia adentro */
+    opacity: 1;
+}
+
+/* Retrasos para la animación de cada ítem del menú */
+#menu-toggle:checked ~ .menu ul li:nth-child(1) a {
+    animation: slideInRight 0.5s ease-out forwards;
+    animation-delay: 0.2s;
+}
+#menu-toggle:checked ~ .menu ul li:nth-child(2) a {
+    animation: slideInRight 0.5s ease-out forwards;
+    animation-delay: 0.3s;
+}
+#menu-toggle:checked ~ .menu ul li:nth-child(3) a {
+    animation: slideInRight 0.5s ease-out forwards;
+    animation-delay: 0.4s;
+}
+#menu-toggle:checked ~ .menu ul li:nth-child(4) a {
+    animation: slideInRight 0.5s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+main {
+    padding: 2rem;
+    text-align: center;
+}
+
+
+
+
+
+/* Contenedor principal que define el tamaño visible del slider */
+.slider-container {
+    width: 100%; /* Ancho del slider */
+    
+    height: 450px; /* Altura del slider */
+    overflow: hidden; /* **Oculta** todas las imágenes que están fuera del área visible */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* Contenedor que alberga TODAS las imágenes en línea */
+.slider-track {
+    /* (5 imágenes + 1 duplicada) * 100% = 600% del ancho del contenedor */
+    width: 600%; 
+    height: 100%;
+    display: flex; /* Coloca las imágenes una al lado de la otra */
+    
+    /* ************************************************ */
+    /* ** La Magia de la Animación Automática (sin JS) ** */
+    /* ************************************************ */
+    animation: slide-animation 20s infinite ease-in-out; 
+    /* Duración total de la animación: 20s */
+    /* Número de imágenes (N=5) * (Tiempo por imagen + Tiempo de transición) 
+       Aquí: 4s por imagen * 5 = 20s (cada imagen se verá durante aprox. 4s)
+    */
+}
+
+/* Estilo de cada imagen */
+.slider-track img {
+    width: calc(100% / 6); /* El ancho de cada imagen es 1/6 del ancho total (600%) */
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    display: block;
+}
+
+/* ************************************************ */
+/* ** Keyframes para la Animación de Desplazamiento ** */
+/* ************************************************ */
+
+@keyframes slide-animation {
+    /* 6 imágenes (5 únicas + 1 duplicada) = 6 posiciones */
+    /* Cada paso de porcentaje debe ser: 100% / 6 = 16.66% */
+    
+    /* 0% - 16.66%: Muestra Imagen 1 */
+    0%, 14% { transform: translateX(0); }
+    
+    /* 16.66% - 33.33%: Muestra Imagen 2 */
+    16.66%, 31% { transform: translateX(calc(-100% / 6 * 1)); }
+
+    /* 33.33% - 50%: Muestra Imagen 3 */
+    33.33%, 47% { transform: translateX(calc(-100% / 6 * 2)); }
+    
+    /* 50% - 66.66%: Muestra Imagen 4 */
+    50%, 64% { transform: translateX(calc(-100% / 6 * 3)); }
+    
+    /* 66.66% - 83.33%: Muestra Imagen 5 */
+    66.66%, 79% { transform: translateX(calc(-100% / 6 * 4)); }
+    
+    /* 83.33% - 100%: Transición al duplicado para un bucle suave */
+    83.33%, 98% { transform: translateX(calc(-100% / 6 * 5)); }
+
+    /* 100%: Regreso inmediato a la primera imagen (sin transición visible) */
+    100% { transform: translateX(0); }
+}
+
+
+
+
+
+/* 1. Estructura Básica */
+.contenedor-planta {
+    position: relative;
+    width: 120px;
+    height: 150px;
+    margin: 50px auto;
+}
+
+.maceta {
+    width: 100px;
+    height: 40px;
+    background-color: #8B4513; /* Marrón tierra */
+    border-radius: 0 0 10px 10px;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+}
+
+/* 2. Follaje Verde Lima (El elemento a animar) */
+.follaje {
+    width: 120px;
+    height: 100px;
+    background-color: #A3FF00; /* Verde Lima */
+    border-radius: 50%;
+    position: absolute;
+    bottom: 30px;
+    /* Aplicar la animación */
+    animation: respirar 4s infinite alternate ease-in-out;
+    transform-origin: bottom center; /* El punto de pivote es la base */
+}
+
+/* 3. Flores Azul Cielo */
+.flor-azul {
+    width: 15px;
+    height: 15px;
+    background-color: #87CEEB; /* Azul Cielo */
+    border-radius: 50%;
+    position: absolute;
+}
+
+.flor-1 { top: 20px; left: 10px; }
+.flor-2 { top: 10px; right: 20px; }
+
+/* 4. Definición de la Animación */
+@keyframes respirar {
+    0% { transform: scale(1) rotate(1deg); opacity: 0.95; }
+    100% { transform: scale(1.03) rotate(-1deg); opacity: 1; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+html{
+    scroll-behavior: smooth;
+}

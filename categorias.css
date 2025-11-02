@@ -1,0 +1,103 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fb;
+}
+
+/* Animación del Título (opcional, para la carga) */
+.title-animation {
+    text-align: center;
+    color: #0b3d91; /* Un color azul profundo */
+    padding: 20px 0 10px;
+    opacity: 0;
+    animation: fadeInDown 1s ease-out forwards;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos de la Barra de Categorías */
+.category-bar {
+    /* Degradado de Verde a Azul */
+    background: linear-gradient(90deg, #388E3C 0%, #1976D2 100%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    margin: 0;
+    
+    /* Animación de entrada de la barra */
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.5s forwards; /* Retraso de 0.5s */
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
+.category-bar ul {
+    list-style: none;
+    display: flex; /* Alinea los ítems horizontalmente */
+    justify-content: center; /* Centra los ítems */
+    padding: 0;
+    margin: 0;
+}
+
+.category-bar ul li {
+    position: relative;
+    overflow: hidden; /* Necesario para la animación del fondo */
+}
+
+.category-bar ul li a {
+    display: block;
+    padding: 15px 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Animación y Efecto Hover */
+.category-bar ul li a:hover {
+    color: #FDD835; /* Color de texto amarillo al pasar el ratón */
+}
+
+/* Creación del Efecto de Fondo Animado (sin JS) */
+.category-bar ul li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Color de fondo que se revelará */
+    background-color: rgba(255, 255, 255, 0.2); 
+    
+    /* Inicia fuera del área visible (a la izquierda) */
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-in-out;
+    
+    z-index: 0; /* Asegura que el fondo esté detrás del texto */
+}
+
+.category-bar ul li:hover::before {
+    /* Al hacer hover, desliza el fondo blanco sobre el elemento */
+    transform: translateX(0);
+}
+
+/* Mantiene el texto visible y por encima de la animación de fondo */
+.category-bar ul li a {
+    position: relative; 
+    z-index: 1;
+}

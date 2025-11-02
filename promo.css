@@ -1,0 +1,91 @@
+
+/* Estilos del Contenedor Principal */
+.promociones {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f7f7f7; /* Fondo ligero para destacar los mosaicos */
+}
+
+.promociones h2 {
+    color: #4CAF50; /* Color verde */
+    margin-bottom: 30px;
+    font-size: 1.8em;
+}
+
+/* Diseño de Mosaico (Cuadrícula) */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilos Generales de cada Mosaico */
+.mosaico {
+    position: relative;
+    padding: 25px;
+    border-radius: 12px;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Colores Específicos de los Mosaicos (Verde Lima y Azul Cielo) */
+.lima {
+    background: linear-gradient(135deg, #a3ff00, #76c700); /* Verde Lima */
+    box-shadow: 0 4px 10px rgba(163, 255, 0, 0.3);
+}
+
+.azul {
+    background: linear-gradient(135deg, #87ceeb, #5cadcf); /* Azul Cielo */
+    box-shadow: 0 4px 10px rgba(135, 206, 235, 0.3);
+}
+
+.cuidado {
+    background: linear-gradient(135deg, #FFD700, #DAA520); /* Dorado/Cuidado */
+    color: #333;
+    text-shadow: none;
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+}
+
+.flash {
+    background: linear-gradient(135deg, #ff6347, #cc4e37); /* Rojo para destacar */
+    box-shadow: 0 4px 10px rgba(255, 99, 71, 0.3);
+}
+
+/* Etiqueta de Descuento (Animada) */
+.descuento {
+    position: absolute;
+    top: 15px;
+    left: -20px;
+    background-color: white;
+    color: red;
+    padding: 5px 25px;
+    font-weight: bold;
+    font-size: 0.9em;
+    transform: rotate(-45deg);
+    z-index: 10;
+    /* Animación de Pulso */
+    animation: pulso-descuento 1.5s infinite;
+}
+
+/* 1. Animación del Mosaico (Zoom Sutil y Elevación) */
+.mosaico:hover {
+    transform: scale(1.05); /* Ligeramente más grande */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra más fuerte (efecto 3D) */
+}
+
+/* 2. Keyframes para el Pulso de Descuento */
+@keyframes pulso-descuento {
+    0% { transform: rotate(-45deg) scale(1); }
+    50% { transform: rotate(-45deg) scale(1.05); }
+    100% { transform: rotate(-45deg) scale(1); }
+}

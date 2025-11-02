@@ -1,0 +1,68 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    padding: 20px;
+}
+
+#video-section {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Contenedor del video y la animación */
+.video-container {
+    position: relative; /* Necesario para posicionar el texto superpuesto */
+    width: 100%;
+    margin: 20px 0;
+    padding: 10px; /* Espacio para el borde animado */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    /* Aplicación de la animación */
+    animation: pulso-borde 2s infinite alternate; 
+    /* Nombre | Duración | Repetición | Dirección */
+}
+
+/* Estilos de la etiqueta de video */
+.video-container video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Texto superpuesto (opcional) */
+.overlay-text {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #ff4500;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+    z-index: 10;
+}
+
+/* 🔑 Definición de la animación: Pulso de Borde */
+@keyframes pulso-borde {
+    0% {
+        /* Estado inicial: un borde sutil */
+        box-shadow: 0 0 0 0 rgba(255, 69, 0, 0.7);
+        border: 2px solid rgba(255, 69, 0, 0.2);
+    }
+    100% {
+        /* Estado final: el borde se expande ligeramente y se intensifica */
+        box-shadow: 0 0 10px 5px rgba(255, 69, 0, 0.4);
+        border: 2px solid rgba(255, 69, 0, 0.6);
+    }
+}
